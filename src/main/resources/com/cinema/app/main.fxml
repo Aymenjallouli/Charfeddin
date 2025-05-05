@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?> <!-- Ajouté -->
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?> <!-- Ajouté -->
+<?import javafx.scene.layout.VBox?>
+
+<!-- Remplacer BorderPane par StackPane comme racine -->
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="com.cinema.app.MainController"
+           prefHeight="750.0" prefWidth="950.0"
+           stylesheets="@styles.css">
+
+    <!-- ImageView pour l'arrière-plan (sera floutée) -->
+    <ImageView fx:id="backgroundImageView" fitWidth="950.0" fitHeight="750.0" preserveRatio="false"/>
+
+    <!-- BorderPane contenant l'interface utilisateur -->
+    <BorderPane fx:id="mainContentPane" styleClass="root-pane"> <!-- fx:id changé, styleClass conservée -->
+        <top>
+            <VBox alignment="CENTER" spacing="8">
+                <padding>
+                    <Insets top="30" right="20" bottom="15" left="20"/>
+                </padding>
+                <Label text="Fok Blastek" styleClass="main-title-label"/>
+                <Label text="Cliquez sur un siège pour réserver/libérer" styleClass="subtitle-label"/>
+            </VBox>
+        </top>
+        <center>
+            <!-- Augmenter le padding vertical du GridPane -->
+            <GridPane fx:id="seatGridPane" hgap="15" vgap="15" alignment="CENTER">
+                <padding>
+                    <Insets top="50" right="60" bottom="50" left="60"/> <!-- Padding vertical augmenté -->
+                </padding>
+                <!-- Les sièges seront ajoutés ici -->
+            </GridPane>
+        </center>
+        <bottom>
+             <VBox alignment="CENTER" spacing="15">
+                 <padding>
+                     <Insets top="15" right="20" bottom="30" left="20"/>
+                 </padding>
+                <HBox fx:id="controlsBox" alignment="CENTER" spacing="12" styleClass="controls-box">
+                     <padding>
+                        <Insets top="12" right="20" bottom="12" left="20"/>
+                     </padding>
+                    <Label text="Ligne:" styleClass="controls-label"/>
+                    <TextField fx:id="newSeatRowField" promptText="Ex: A" prefWidth="50" styleClass="controls-textfield"/>
+                    <Label text="Numéro:" styleClass="controls-label"/>
+                    <TextField fx:id="newSeatNumberField" promptText="Ex: 1" prefWidth="50" styleClass="controls-textfield"/>
+                    <Button fx:id="addSeatButton" text="Ajouter Siège" onAction="#handleAddSeatButton" styleClass="controls-button"/>
+                    <CheckBox fx:id="deleteModeCheckBox" text="Mode Suppression" onAction="#handleDeleteModeToggle" styleClass="controls-checkbox"/>
+                </HBox>
+                <Label fx:id="statusLabel" styleClass="status-label"/>
+             </VBox>
+        </bottom>
+    </BorderPane>
+</StackPane>
